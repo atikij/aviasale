@@ -33,6 +33,10 @@
         <span class="material-symbols-outlined">nutrition</span>
         <span class="text">Продукты</span>
       </router-link>
+      <router-link to="/ticketsFavorites" class="button">
+        <span class="material-symbols-outlined">nutrition</span>
+        <span class="text">Избранные</span>
+      </router-link>
     </div>
 
     <div class="flex"></div>

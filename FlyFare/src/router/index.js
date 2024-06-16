@@ -4,6 +4,7 @@ import PersonalAccountView from "@/views/PersonalAccountView.vue";
 import TicketView from "@/views/TicketView.vue";
 import SettingView from "@/views/SettingView.vue";
 import PayView from "@/views/PayView.vue";
+import FavoritesView from "@/views/FavoritesView.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -37,6 +38,12 @@ const router = createRouter({
       path: '/tickets/pay/:ticketId',
       name: 'pay',
       component: PayView,
+      props: true // Позволяет передавать параметры как props
+    },
+    {
+      path: '/ticketsFavorites',
+      name: 'favorites',
+      component: FavoritesView,
       props: true // Позволяет передавать параметры как props
     }
   ]

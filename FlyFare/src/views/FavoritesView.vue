@@ -1,3 +1,33 @@
+<template>
+  <main class="main-ticket">
+    <span class="main-ticket-title">Избранные билеты</span>
+    <div class="ticket-container">
+      <div class="main-ticket-first-container">
+        <div class="main-ticket-inputs">
+          <input type="text"/>
+          <input type="text"/>
+        </div>
+        <div>
+          <div v-for="ticket in 10">
+            {{ticket}}
+          </div>
+        </div>
+      </div>
+      <div class="main-ticket-first-container">
+        <div class="main-ticket-inputs">
+          <input type="text"/>
+          <button/>
+        </div>
+        <div>
+          <div class="main-tickets" v-for="ticket in 10">
+            {{ticket}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</template>
+
 <script setup>
 import { ref, onMounted } from 'vue'; // Импортируем ref для хранения данных и onMounted для выполнения действий при монтировании компонента
 
@@ -28,32 +58,16 @@ const loadFavoriteTickets = () => {
 onMounted(loadFavoriteTickets);
 </script>
 
-<template>
-  <main class="main-ticket">
-    <div class="ticket-container">
-      <div v-for="ticket in favoriteTickets" :key="ticket.id" class="ticket-item">
-        <h3>{{ ticket.airline }}</h3>
-        <p>Destination: {{ ticket.destination }}</p>
-        <p>Price: {{ ticket.price }}</p>
-        <!-- Дополнительные поля билета могут быть добавлены сюда -->
-      </div>
-    </div>
-  </main>
-</template>
+
 
 <style scoped>
 .main-ticket {
-  display: grid;
-  place-items: center;
-  height: 100vh;
-  margin: 0;
-  padding: 0;
-  background-color: #f0f0f0; /* Фон для примера */
+ display: flex;
+  flex-direction: column;
 }
 
 .ticket-container {
   display: flex;
-  flex-direction: column;
   gap: 20px;
   max-height: 80vh; /* Ограничиваем высоту контейнера для прокрутки */
   width: 80vw;
@@ -68,5 +82,15 @@ onMounted(loadFavoriteTickets);
   border: 1px solid #ccc;
   padding: 10px;
   border-radius: 8px;
+}
+
+.main-ticket-inputs {
+  
+  input{
+   width: 100%;
+   height:  50px;
+  background: #CBF3F0A8;
+border-radius: 15px;
+  }
 }
 </style>
