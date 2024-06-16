@@ -1,5 +1,34 @@
+
+
+<template>
+  <main class="main-ticket">
+    <div class="search-container">
+      <input type="text" placeholder="Откуда" class="search-input"/>
+      <input type="text" placeholder="Куда" class="search-input"/>
+      <input type="date" placeholder="Дата отправления" class="search-input"/>
+      <input type="number" placeholder="Количество пассажиров" class="search-input"/>
+      <button class="search-button">Поиск</button>
+    </div>
+    <div class="ticket-container">
+      <div v-for="ticket in tickets" :key="ticket.id" class="ticket">
+        <div class="ticket-info">
+          <p class="route">{{ ticket.departure_location }} &#8594; {{ ticket.arrival_location }}</p>
+          <p class="dates">{{ ticket.departure_date }} - {{ ticket.return_date }}</p>
+        </div>
+        <div class="ticket-actions">
+          <router-link :to="'/tickets/pay/' + ticket.id">
+            <button class="buy-button">Купить</button>
+          </router-link>
+          <i class="favorite-icon" @click="addNewTicket(ticket)">&#9734;</i>
+        </div>
+      </div>
+    </div>
+  </main>
+</template>
+
 <script setup>
 import {ref, onMounted, watch} from 'vue';
+import { useStore } from 'vuex';
 
 // Тестовые данные билетов
 const testTickets = [
@@ -72,7 +101,7 @@ const testTickets = [
     price: '400 долларов'
   },
 ];
-
+const store = useStore();
 const tickets = ref([]);
 
 // Сохраняем билеты в localStorage
@@ -84,6 +113,10 @@ const saveTicketsToLocalStorage = (tickets) => {
 const loadTicketsFromLocalStorage = () => {
   const savedTickets = localStorage.getItem('tickets');
   return savedTickets ? JSON.parse(savedTickets) : [];
+};
+
+const addNewTicket = (ticket) => {
+  store.dispatch('addTicket', ticket);
 };
 
 // Имитируем загрузку билетов
@@ -106,34 +139,6 @@ watch(tickets, (newTickets) => {
 });
 
 </script>
-
-<template>
-  <main class="main-ticket">
-    <div class="search-container">
-      <input type="text" placeholder="Откуда" class="search-input"/>
-      <input type="text" placeholder="Куда" class="search-input"/>
-      <input type="date" placeholder="Дата отправления" class="search-input"/>
-      <input type="number" placeholder="Количество пассажиров" class="search-input"/>
-      <button class="search-button">Поиск</button>
-    </div>
-    <div class="ticket-container">
-      <div v-for="ticket in tickets" :key="ticket.id" class="ticket">
-        <div class="ticket-info">
-          <p class="route">{{ ticket.departure_location }} &#8594; {{ ticket.arrival_location }}</p>
-          <p class="dates">{{ ticket.departure_date }} - {{ ticket.return_date }}</p>
-        </div>
-        <div class="ticket-actions">
-          <router-link :to="'/tickets/pay/' + ticket.id">
-            <button class="buy-button">Купить</button>
-          </router-link>
-          <i class="favorite-icon">&#9734;</i>
-        </div>
-      </div>
-    </div>
-  </main>
-</template>
-
-
 <style scoped>
 .main-ticket {
   display: grid;

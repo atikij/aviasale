@@ -19,16 +19,24 @@ const store = createStore({
     setUser(state, userData) {
       state.user = { ...state.user, ...userData };
     },
+    addTicket(state, ticket) {
+      console.log(ticket)
+      state.tickets.push(ticket);
+    },
   },
   actions: {
     setUser({ commit }, userData) {
       commit('setUser', userData);
     },
+    addTicket({ commit }, ticket) {
+      commit('addTicket', ticket);
+    }
   },
   getters: {
     getUser(state) {
       return state.user;
     },
+   
   },
 });
 
