@@ -1,5 +1,6 @@
 <script setup>
 import LoginComponent from '../components/Login.vue'
+import NavBar from "@/components/NavBar.vue";
 </script>
 
 <template>

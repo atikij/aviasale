@@ -1,8 +1,8 @@
 <template>
-      <input type="password" id="password" :value="password" @input="password = $event.target.value" placeholder="Почта/телефон" required>
-      <input type="text" id="username" :value="username" @input="username = $event.target.value" placeholder="Логин" required>
-      <input type="password" id="password" :value="password" @input="password = $event.target.value" placeholder="Пароль" required>
-      <input type="password" id="password" :value="password" @input="password = $event.target.value" placeholder="Повторите пароль" required>
+  <input type="email" id="email" v-model="email" placeholder="Почта" required>
+  <input type="text" id="username" v-model="username" placeholder="Логин" required>
+  <input type="password" id="password" v-model="password" placeholder="Пароль" required>
+  <input type="password" id="confirmPassword" v-model="confirmPassword" placeholder="Подтвердить пароль" required>
     <button type="button" @click="login" >Зарегистрироваться</button>
     <div class="links" style="">
       <router-link to="/">Назад</router-link>
@@ -19,8 +19,7 @@ export default {
   },
   methods: {
     login() {
-      // Здесь добавьте логику для входа
-      console.log('Вход выполнен');
+      this.$router.push('/');
     }
   }
 };

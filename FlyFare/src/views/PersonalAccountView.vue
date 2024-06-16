@@ -1,32 +1,32 @@
 <template>
   <main class="main">
-    <div class="account-container">
+    <div class="profile-container">
       <h2>Личный кабинет</h2>
-      <div class="profile-container">
+      <div class="profile-content">
         <div class="avatar-section">
           <div class="avatar">
             Аватар
           </div>
           <button class="change-avatar-btn" @click="changeAvatar">Изменить аватар</button>
-          <button class="delete-btn" @click="deleteAvatar">Удалить</button>
+          <button class="delete-avatar-btn" @click="deleteAvatar">Удалить</button>
         </div>
         <div class="details-section">
           <div class="row">
-            <input type="text" placeholder="Имя" v-model="firstName" />
             <input type="text" placeholder="Фамилия" v-model="lastName" />
+            <input type="text" placeholder="Имя" v-model="firstName" />
             <input type="text" placeholder="Отчество" v-model="middleName" />
-            <input type="text" placeholder="День рождение" v-model="birthDate" />
+            <input type="date" placeholder="День рождения" v-model="birthDate" />
           </div>
           <div class="row">
             <input type="text" placeholder="Гражданство" v-model="citizenship" />
             <input type="text" placeholder="Серия паспорта" v-model="passportSeries" />
             <input type="text" placeholder="Номер паспорта" v-model="passportNumber" />
-            <input type="text" placeholder="Моб. телефон" v-model="phone" />
-            <input type="text" placeholder="Почта" v-model="email" />
+            <input type="tel" placeholder="Моб. телефон" v-model="phone" />
+            <input type="email" placeholder="Почта" v-model="email" />
           </div>
         </div>
       </div>
-      <button class="edit-btn" @click="editProfile">Редактировать</button>
+      <button class="edit-btn" @click="editProfile">Сохранить</button>
     </div>
   </main>
 </template>
@@ -63,95 +63,120 @@ export default {
 }
 </script>
 
-<style>
-.main{
-  display: grid;
-}
-
-.account-container {
+<style scoped>
+.main {
   display: flex;
-  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  height: 80vh;
-  width: 80vw;
-  background: white;
-  margin: 0 auto;
   padding: 20px;
-  border-radius: 15px;
 }
 
-.user-profile {
-  padding: 20px;
-  background-color: #e0f7f8;
-  border-radius: 10px;
-  max-width: 800px;
-  margin: 0 auto;
+.profile-container {
+  width: 90vw;
+  max-width: 1200px;
+  background: white;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
+
 h2 {
   text-align: center;
   margin-bottom: 20px;
   color: #033e6b;
 }
-.profile-container {
+
+.profile-content {
   display: flex;
   justify-content: space-between;
 }
+
 .avatar-section {
-  flex: 1;
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 20px;
 }
+
 .avatar {
-  width: 15vh;
-  height: 10vw;
+  width: 150px;
+  height: 150px;
   background-color: #fff;
   border: 1px solid #ccc;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0 auto 10px;
+  border-radius: 50%;
+  margin-bottom: 10px;
 }
-button {
-  display: block;
+
+.change-avatar-btn,
+.delete-avatar-btn {
   width: 150px;
   padding: 10px;
-  margin: 10px auto;
+  margin-top: 10px;
   border: none;
-  border-radius: 5px;
+  border-radius: 20px;
   cursor: pointer;
+  font-size: 0.9em;
 }
+
 .change-avatar-btn {
   background-color: #033e6b;
   color: #fff;
+  transition: background-color 0.3s ease;
 }
-.delete-btn {
+
+.change-avatar-btn:hover {
+  background-color: #0056b3;
+}
+
+.delete-avatar-btn {
   background-color: #fff;
   border: 1px solid #033e6b;
   color: #033e6b;
+  transition: background-color 0.3s ease;
 }
+
+.delete-avatar-btn:hover {
+  background-color: #f0f0f0;
+}
+
 .details-section {
   flex: 2;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
 }
+
 .row {
   display: flex;
-  justify-content: flex-start;
   flex-direction: column;
-  margin-bottom: 10px;
+  gap: 10px;
 }
+
 input {
-  width: 90%;
   padding: 10px;
   border: 1px solid #ccc;
-  border-radius: 5px;
+  border-radius: 20px;
   background-color: #d3f2f3;
-  margin-bottom: 10px;
+  font-size: 0.9em;
 }
+
 .edit-btn {
+  display: block;
+  margin: 30px auto 0;
+  padding: 15px 30px;
+  border: none;
+  border-radius: 20px;
   background-color: #033e6b;
   color: #fff;
-  width: 200px;
-  margin: 20px auto 0;
+  cursor: pointer;
+  font-size: 1em;
+  transition: background-color 0.3s ease;
+}
+
+.edit-btn:hover {
+  background-color: #0056b3;
 }
 </style>
